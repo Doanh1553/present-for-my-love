@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Google Dịch</title>
+        <link rel="icon" type="image/png" href="https://ssl.gstatic.com/translate/favicon.ico">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        
+        <style>
+            body{
+                font-size: 24px;
+                font-family: Roboto;
+                font-weight: 400;
+            }
+
+            .top_bar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                justify-items: center;
+                border-bottom: 1px solid #E0E0E0;
+                padding: 8px;
+            }
+
+            .left_top_bar{
+                display: flex;
+                align-items: center;
+                justify-items: center;
+                gap: 8px;
+                font-size: 24px;
+                color: #5F6368;
+            }
+
+            .logo{
+                display: flex;
+                align-items: center;
+                justify-items: center;
+                gap: 4px;
+                font-size: 22px;
+                font-weight: 400;
+                color: #5F6368;
+                cursor: pointer;
+            }
+
+            .logo img{
+                margin-top: 3px;
+            }
+
+            .right_top_bar{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 24px;
+                color: #5F6368;
+            }
+
+            .big_icon{
+                font-size: 36px;
+            }
+
+            .top_bar_icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .top_bar_icon:hover{
+                background-color: #F0F0F0;
+            }
+
+
+
+
+
+            .mode_select{
+                position: relative;
+                justify-content: flex-start;
+                height: 65px;
+                border: none;
+            }
+
+            .container_mode{
+                position: absolute;
+                left: 40px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .mode_active{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 14px;
+                font-family: Roboto;
+                font-weight: 500;
+                padding: 7px 15px;
+                background-color: #e8f0fe;
+                border: 1px solid #E0E0E0;
+                border-radius: 4px;
+                color: #1967d2;
+                cursor: pointer;
+            }
+
+            .mode_active:hover{
+                color: #174FA8;
+                background-color: #DFEBFD;
+            }
+
+            .mode_option{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 14px;
+                font-family: Roboto;
+                font-weight: 500;
+                padding: 7px 15px;
+                background-color: transparent;
+                border: 1px solid #E0E0E0;
+                border-radius: 4px;
+                color: #1967d2;
+                cursor: pointer;
+            }
+
+            .mode_option:hover{
+                color: #174FA8;
+                background-color: #F6FAFE;
+            }
+
+            .mode_select_icon{
+                font-size: 20px;
+            }
+
+
+
+
+
+            .lang_select{
+                position: relative;
+                height: 64px;
+                margin:  0px;
+                margin-bottom: 0px;
+                padding: 0px;
+                padding-bottom: 0px;
+            }
+
+            .source_lang{
+                position: absolute;
+                left: 50px;
+                top: 50%;
+                transform: translateY(-38%);
+                display: flex;
+                align-items: center;
+            }
+
+            .target_lang{
+                position: absolute;
+                left: calc(50% + 54px);
+                top: 50%;
+                transform: translateY(-38%);
+                display: flex;
+                align-items: center;
+            }
+
+            .lang_active{
+                display: flex;
+                align-items: center;
+                justify-items: center;
+                padding: 16px 8px;
+                font-size: 14px;
+                font-family: Roboto;
+                font-weight: 500;
+                color: #1a73e8;
+                background-color: transparent;
+                border: none;
+                border-bottom: 2px solid #1a73e8;
+                cursor: pointer;
+            }
+
+            .lang_active:hover{
+                background-color: #F6FAFE;
+                color: #2479E9;
+                border-bottom: 2px solid #174EA6;
+            }
+
+            .lang_option{
+                display: flex;
+                align-items: center;
+                justify-items: center;
+                padding: 16px 8px;
+                font-size: 14px;
+                font-family: Roboto;
+                font-weight: 500;
+                color: #5f6368;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+
+            .lang_option:hover{
+                background-color: #F7F8F8;
+                color: #6F7277;
+            }
+
+            .lang_select_icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                color: #5f6368;
+            }
+
+            .lang_select_icon:hover{
+                background-color: #F5F5F5;
+            }
+
+            .swap_button{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, -38%);
+                top: 50%;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                color: #5f6368;
+            }
+
+            .swap_button:hover{
+                background-color: #F5F5F5;
+            }
+
+
+
+
+
+            .translate_box{
+                display: flex;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 24px 40px;
+                padding-top: 0px;
+                margin-top: 0px;
+                border: none;
+            }
+
+            .input_box{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                padding: 16px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                background-color: transparent;
+                min-height: 130px;
+                color :#2b2e30;
+            }
+
+            .output_box{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                padding: 16px;
+                border: none;
+                border-radius: 8px;
+                background-color: #F5F5F5;
+                min-height: 130px;
+                color: #5f6368;
+            }
+
+            .input_text{
+                flex: 1;
+                outline: none;
+                font-size: 24px;
+                line-height: 1.5;
+                min-height: 20px;
+                overflow-y: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+
+            .left_under{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .right_under{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0px;
+            }
+
+            .under{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .under_icon{
+                color: #5f6368;
+                font-size: 22px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .under_icon:hover{
+                background-color: #F5F5F5;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="top_bar">
+            <div class="left_top_bar">
+                <div class="top_bar_icon">
+                    <span class="material-icons">
+                        menu
+                    </span>
+                </div>
+
+                <div class="logo">
+                    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png" alt="Google" height="24">
+                    <span>Dịch</span>
+                </div>
+            </div>
+
+            <div class="right_top_bar">
+                <div class="top_bar_icon">
+                    <span class="material-icons">
+                        settings
+                    </span>
+                </div>
+
+                <div class="top_bar_icon">
+                    <span class="material-icons">
+                        apps
+                    </span>
+                </div>
+
+                <div class="top_bar_icon">
+                    <span class="material-icons big_icon">
+                        account_circle
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mode_select">
+            <div class="container_mode">
+                <button class="mode_active">
+                    <span class="material-icons mode_select_icon">
+                        translate
+                    </span>
+
+                    <span>
+                        Văn bản
+                    </span>
+                </button>
+
+                <button class="mode_option">
+                    <span class="material-icons mode_select_icon">
+                        image
+                    </span>
+
+                    <span>
+                        Hình ảnh
+                    </span>
+                </button>
+
+                <button class="mode_option">
+                    <span class="material-icons mode_select_icon">
+                        insert_drive_file
+                    </span>
+
+                    <span>
+                        Tài liệu
+                    </span>
+                </button>
+
+                <button class="mode_option">
+                    <span class="material-icons mode_select_icon">
+                        web
+                    </span>
+
+                    <span>
+                        Trang web
+                    </span>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="lang_select">
+            <div class="source_lang">
+                <button class="lang_option">
+                    Phát hiện ngôn ngữ
+                </button>
+
+                <button class="lang_active">
+                    Anh
+                </button>
+
+                <button class="lang_option">
+                    Việt
+                </button>
+
+                <button class="lang_option">
+                    Pháp
+                </button>
+
+                <span class="material-icons lang_select_icon">
+                    expand_more
+                </span>
+            </div>
+
+            <div class="swap_button">
+                <span class="material-icons">
+                    swap_horiz
+                </span>
+            </div>
+
+            <div class="target_lang">
+                <button class="lang_active">
+                    Việt
+                </button>
+
+                <button class="lang_option">
+                    Anh
+                </button>
+
+                <button class="lang_option">
+                    Pháp
+                </button>
+
+                <span class="material-icons lang_select_icon">
+                    expand_more
+                </span>
+            </div>
+        </div>
+
+            
+        <div class="translate_box">
+            <div class="input_box">
+                <div class="input_text" contenteditable="true" id="input"></div>
+
+                <div class="under">
+                    <div class="left_under">
+                        <span class="material-icons under_icon">
+                            mic_none
+                        </span>
+                        <span class="material-icons under_icon">
+                            volume_up
+                        </span>
+                    </div>
+
+                    <div class="right_under">
+                        <span class="material-icons under_icon">
+                            keyboard
+                        </span>
+                        <span class="material-icons under_icon">
+                            arrow_drop_down
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output_box">
+                <div class="output_text" id="output">
+                    Bản dịch
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputBox = document.getElementById("input");
+        const outputBox = document.getElementById("output");
+        let typingTimer;
+        let loadingInterval
+        const delay = 500;
+
+        inputBox.addEventListener("input", function() {
+            clearTimeout(typingTimer);
+            clearInterval(loadingInterval);
+            outputBox.innerText = "";
+
+            typingTimer = setTimeout(function() {
+                let dots = 0;
+                loadingInterval = setInterval( function() {
+                    dots = (dots + 1) % 4;
+                    outputBox.innerText = "Đang dịch" + ".".repeat(dots);
+                }, 100);
+
+                setTimeout( function() {
+                    clearInterval(loadingInterval);
+                    const text = inputBox.innerText.trim();
+                    outputBox.innerText = text || "Bản dịch";
+
+                    const lowerCaseText = text.toLowerCase();
+                    if (lowerCaseText === "hôm nay là ngày gì nhỉ") {
+                        document.body.style.transition = "opacity 2s";
+                        document.body.style.opacity = 0;
+                        
+                        setTimeout( function () {
+                            window.location.href = "love_letter.html";
+                        }, 1000);
+                    }
+                }, 500);
+            }, delay);
+            
+
+        });
+        
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: #966f3d;
+  overflow: hidden;
+}
+
+.seed {
+  transform: scale(0);
+  transform-origin: 500px 200px;
+  animation: grow_seed 0.4s ease-out forwards;
+}
+
+@keyframes grow_seed {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.petals {
+  animation: bloom 0.6s ease-out forwards;
+}
+
+@keyframes bloom {
+  0% {
+    transform: rotate(var(--angle)) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  70% {
+    transform: rotate(var(--angle)) scale(1.1);
+  }
+  100% {
+    transform: rotate(var(--angle)) scale(1);
+  }
+}
