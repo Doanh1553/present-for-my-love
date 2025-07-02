@@ -1229,6 +1229,22 @@
             let typingTimer;
             let loadingInterval
             const delay = 500;
+            const bgMusic = document.getElementById("bg-music");
+            let musicStarted = false;
+        
+            window.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" && !musicStarted) {
+                    if (bgMusic) {
+                        bgMusic.volume = 0.6;
+                        bgMusic.play().then(() => {
+                            musicStarted = true;
+                            console.log("Nhạc đã bắt đầu 🎶");
+                        }).catch((err) => {
+                            console.warn("Không thể phát nhạc: ", err);
+                        });
+                    }
+                }
+            });
 
             inputBox.addEventListener("input", function() {
                 clearTimeout(typingTimer);
@@ -1308,7 +1324,6 @@ Tuyết à, anh yêu em.`;
 
                 tinyEnvelope.addEventListener('click', () => {
                     tinyEnvelope.classList.add('open');
-                    document.getElementById("bg-music").play();
 
                     setTimeout(() => {
                         flapEnvelope.classList.add('open');
