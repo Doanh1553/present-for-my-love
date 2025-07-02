@@ -1258,7 +1258,6 @@
                                 document.body.classList.remove("translate_mode");
                                 document.body.classList.add("love_mode");
                                 document.body.style.opacity = 1;
-                                document.getElementById("bg-music").play();
                             }, 1000);
                         }
                     }, 500);
@@ -1309,6 +1308,7 @@ Tuyết à, anh yêu em.`;
 
                 tinyEnvelope.addEventListener('click', () => {
                     tinyEnvelope.classList.add('open');
+                    document.getElementById("bg-music").play();
 
                     setTimeout(() => {
                         flapEnvelope.classList.add('open');
