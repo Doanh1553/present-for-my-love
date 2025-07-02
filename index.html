@@ -1219,9 +1219,25 @@
             </div>
         </div>
 
-        <audio id="bg-music" src="thangdien.mp3" preload="auto"></audio>
+        <audio id="bg-music" src="thangdien.mp3" type="audio/mp3" loop></audio>
 
     <script>
+        const bgMusic = document.getElementById("bg-music");
+        let musicStarted = false;
+        
+        window.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" && !musicStarted) {
+                if (bgMusic) {
+                    bgMusic.volume = 0.6;
+                    bgMusic.play().then(() => {
+                        musicStarted = true;
+                        console.log("Nhạc đã bắt đầu 🎶");
+                    }).catch((err) => {
+                        console.warn("Không thể phát nhạc: ", err);
+                    });
+                }
+            }
+        });
         // ===================== PHẦN TRANSLATE =====================
         if (document.getElementById("input") && document.getElementById("output")) {
             const inputBox = document.getElementById("input");
@@ -1229,22 +1245,6 @@
             let typingTimer;
             let loadingInterval
             const delay = 500;
-            const bgMusic = document.getElementById("bg-music");
-            let musicStarted = false;
-        
-            window.addEventListener("keydown", function (e) {
-                if (e.key === "Enter" && !musicStarted) {
-                    if (bgMusic) {
-                        bgMusic.volume = 0.6;
-                        bgMusic.play().then(() => {
-                            musicStarted = true;
-                            console.log("Nhạc đã bắt đầu 🎶");
-                        }).catch((err) => {
-                            console.warn("Không thể phát nhạc: ", err);
-                        });
-                    }
-                }
-            });
 
             inputBox.addEventListener("input", function() {
                 clearTimeout(typingTimer);
