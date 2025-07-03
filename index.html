@@ -730,6 +730,30 @@
                 font-weight: bold;
                 color: #6a1b9a;
             }
+
+            .music-button {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 12px 20px;
+                background: linear-gradient(135deg, #ffb3d9, #ffcce6);
+                border: none;
+                border-radius: 30px;
+                color: #880e4f;
+                font-size: 16px;
+                font-weight: bold;
+                font-family: 'Dancing Script', cursive;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                cursor: pointer;
+                z-index: 999;
+                transition: all 0.3s ease;
+            }
+
+            .music-button:hover {
+                background: linear-gradient(135deg, #ff99cc, #ffccdd);
+                transform: translateX(-50%) scale(1.05);
+            }
         </style>
     </head>
 
@@ -1219,25 +1243,10 @@
             </div>
         </div>
 
-        <audio id="bg-music" src="thangdien.mp3" type="audio/mp3" preload="auto" loop></audio>
+        <button id="play-music-btn" class="music-button">💗 Bấm vào đây để mở nhạc 💗</button>
+        <audio id="bg-music" src="thangdien.mp3" preload="auto" loop></audio>
 
     <script>
-        const bgMusic = document.getElementById("bg-music");
-        let musicStarted = false;
-
-        window.addEventListener("keydown", function (e) {
-            if (e.key === "Enter" && !musicStarted) {
-                if (bgMusic) {
-                    bgMusic.volume = 0.6;
-                    bgMusic.play().then(() => {
-                        musicStarted = true;
-                        console.log("🎵 Nhạc đã bắt đầu");
-                    }).catch((err) => {
-                        console.warn("Không thể phát nhạc:", err);
-                    });
-                }
-            }
-        });
         // ===================== PHẦN TRANSLATE =====================
         if (document.getElementById("input") && document.getElementById("output")) {
             const inputBox = document.getElementById("input");
@@ -1354,7 +1363,24 @@ Tuyết à, anh yêu em.`;
                 sky.appendChild(star);
             }
         }
+
+        const musicButton = document.getElementById("play-music-btn");
+        const bgMusic = document.getElementById("bg-music");
         
+        musicButton.addEventListener("click", () => {
+            if (bgMusic) {
+                bgMusic.volume = 0.6;
+                bgMusic.play()
+                    .then(() => {
+                        console.log("🎵 Nhạc đang phát");
+                        musicButton.style.display = "none"; // Ẩn nút sau khi nhạc chạy
+                    })
+                    .catch((err) => {
+                        console.warn("Không thể phát nhạc:", err);
+                        musicButton.innerText = "😥 Trình duyệt chặn nhạc rồi!";
+                    });
+            }
+        });
     </script>
 
     </body>
