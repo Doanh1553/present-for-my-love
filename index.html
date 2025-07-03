@@ -1241,10 +1241,11 @@
             <div class="love-paper">
                 <div class="letter-text" id="letter-text"></div>
             </div>
+
+            <button id="play-music-btn" class="music-button">💗 Bấm vào đây để mở nhạc 💗</button>
+            <audio id="bg-music" src="thangdien.mp3" preload="auto" loop></audio>
         </div>
 
-        <button id="play-music-btn" class="music-button">💗 Bấm vào đây để mở nhạc 💗</button>
-        <audio id="bg-music" src="thangdien.mp3" preload="auto" loop></audio>
 
     <script>
         // ===================== PHẦN TRANSLATE =====================
@@ -1363,10 +1364,10 @@ Tuyết à, anh yêu em.`;
                 sky.appendChild(star);
             }
         }
-
+        
         const musicButton = document.getElementById("play-music-btn");
         const bgMusic = document.getElementById("bg-music");
-        
+
         musicButton.addEventListener("click", () => {
             if (bgMusic) {
                 bgMusic.volume = 0.6;
